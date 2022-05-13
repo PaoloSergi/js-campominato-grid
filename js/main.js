@@ -4,7 +4,7 @@ con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
 Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro. */
 
-const myMain = document.querySelector("main");
+const myWrap = document.querySelector(".wrap");
 
 const levelEasyBtn = document.getElementById("levelEasy");
 const levelMediumBtn = document.getElementById("levelMedium");
@@ -15,12 +15,15 @@ levelMediumBtn.addEventListener('click', () => createGrid(81, "medium"));
 levelDifficultBtn.addEventListener('click', () => createGrid(49, "difficult"));
 
 
+
 // dichiarazione funzioni
 
 function createGrid (size, level){
 
+    myWrap.innerHTML = "";
+
     const myGrid = document.createElement("div");
-    myMain.append(myGrid);
+    myWrap.append(myGrid);
     myGrid.classList.add("grid", level);
 
     for (let i=0; i<size; i++){
@@ -28,7 +31,13 @@ function createGrid (size, level){
         const myArticle = document.createElement("article");
         myGrid.append(myArticle);
         myArticle.append(myArray[i]);
+
+        myArticle.addEventListener('click', () => clickEffectBlue(myArticle));
     }
+}
+
+function clickEffectBlue(arg){
+    arg.style.backgroundColor = "blue";
 }
 
 function createRandomNumsArray (size, min, max){
