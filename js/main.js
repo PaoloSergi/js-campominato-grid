@@ -25,9 +25,10 @@ function createGrid (size, level){
     const myGrid = document.createElement("div");
     myWrap.append(myGrid);
     myGrid.classList.add("grid", level);
+    
+    const myArray = createRandomNumsArray (size, 1, size);
 
     for (let i=0; i<size; i++){
-        const myArray = createRandomNumsArray (size, 1, size);
         const myArticle = document.createElement("article");
         myGrid.append(myArticle);
         myArticle.append(myArray[i]);
